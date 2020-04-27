@@ -1,0 +1,8 @@
+<h1><%= @recipe.name %></h1> 
+<h3><%= @recipe.time_to_cook %> mins </h4>
+<p><%= @recipe.instructions %></p>
+<p><% @recipe.recipe_ingredients.each do |ingredient|%></p>
+  <div>
+    <h4><%= ingredient.quantity%>: <%= ingredient.ingredient.name %></h4>
+  </div>
+  <%end%>

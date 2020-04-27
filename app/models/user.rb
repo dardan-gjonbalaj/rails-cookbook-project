@@ -1,0 +1,15 @@
+class User < ActiveRecord::Base
+  has_secure_password
+  has_many :recipes
+  has_many :ingredients, through: :recipes
+  validates :name, presence: true, uniqueness: true
+  
+  def self.find_or_create_from_auth_hash(auth_hash)
+    create_or_find_by(name: hash[:info][:email]) do
+      pw = SecureRandom.hex(64)
+      #self.password = pw
+      binding.pry
+    end
+  end
+
+end

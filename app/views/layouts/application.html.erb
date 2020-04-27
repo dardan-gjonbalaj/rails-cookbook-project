@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RailsCookbookProject</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <%if logged_in? %>
+    <%= link_to "Sign out", logout_path, method: :delete %>
+    <%= link_to "All Recipes", recipes_path %>
+    <%= link_to "Add Recipe", new_recipe_path %>
+    <%= link_to "Hi, #{current_user.name}", user_path(current_user) %>
+  <% else %>
+    <%= link_to "Sign in", login_path %>
+    <%= link_to "Sign up", signup_path %>
+  <%end%>
+  <%= render 'layouts/errors' %>
+    <%= yield %>
+  </body>
+</html>
