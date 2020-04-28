@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   #protect_from_forgery with: :null_session
 
   def create
-   # binding.pry
+    binding.pry
     if auth_hash
    #if request.env["omniauth.auth"].present?
      # user = User.find_or_initialize_by(name: request.env["omniauth.auth"]['info']['name'])
@@ -21,9 +21,10 @@ class SessionsController < ApplicationController
           flash[:alert] = "The username is invalid"
        end
         render 'new'
-      end
+     #end
     end
   end
+end
   
 
   def destroy
@@ -31,7 +32,7 @@ class SessionsController < ApplicationController
     redirect_to '/', notice: "You have successfully logged out"
   end
   
-  protected 
+ # protected 
 
   def auth_hash
     request.env['omniauth.auth']

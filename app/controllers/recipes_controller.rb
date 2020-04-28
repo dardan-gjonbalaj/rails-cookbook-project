@@ -41,7 +41,8 @@ class RecipesController < ApplicationController
       #recipe.add_ingredients_to_recipe(recipe_ingredient_params)
       redirect_to recipe_path(@recipe), notice: "Your recipe has successfully been updated"
     else
-      redirect_to new_recipe_path
+     # redirect_to new_recipe_path
+      render :edit
     end
     end
 

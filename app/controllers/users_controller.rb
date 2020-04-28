@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authorized, except: [:new,:create]
+  
   def new
     @user = User.new
   end
@@ -23,6 +24,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    binding.pry
     @user = find_by_id(User)
   end
 

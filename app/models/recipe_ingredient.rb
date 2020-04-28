@@ -3,7 +3,7 @@ class RecipeIngredient < ApplicationRecord
   belongs_to :recipe
   #validates :ingredient_id , uniqueness: true
 
-  #validates_uniqueness_of :ingredient_id
+  validates_uniqueness_of :ingredient_id, scope: :recipe_id
   def ingredient_name
     ingredient.try(:name)
   end
