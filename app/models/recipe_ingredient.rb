@@ -10,7 +10,7 @@ class RecipeIngredient < ApplicationRecord
 
   def ingredient_name=(name)
     puts name
-    self.ingredient = Ingredient.find_or_create_by(name: name.downcase) unless name.blank?
+    self.ingredient = Ingredient.find_or_create_by(name: name.downcase) #unless name.blank?
     
   end
 end

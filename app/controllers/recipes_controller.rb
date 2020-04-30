@@ -4,7 +4,8 @@ class RecipesController < ApplicationController
   #before_action :authorized
   def index
     #binding.pry
-    @recipes = current_user.recipes.all
+   # @recipes = current_user.recipes.all
+   @recipes = Recipe.all
     @recipes = Recipe.search(params[:search]) if params[:search].present?
            
   end
@@ -15,9 +16,11 @@ class RecipesController < ApplicationController
   end
 
   def create
-    #@recipe = Recipe.new(recipe_params)
+    
     @recipe = current_user.recipes.build(recipe_params)
-    #binding.pry
+    binding.pry
+    #if Recipe.all.exists?(name: params[:recipe][:name])
+      
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
@@ -27,7 +30,7 @@ class RecipesController < ApplicationController
 
 
   def edit
-   # binding.pry
+    binding.pry
     @recipe = current_user.recipes.find_by_id(params[:id])
     #@recipe = find_by_id(Recipe)
     @i = 3.times.collect { @recipe.recipe_ingredients.build }

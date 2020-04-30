@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorized
-    redirect_to login_path, alert: "You cannot access this page" unless logged_in? && current_user.id == params[:id].to_i 
+    redirect_to login_path, alert: "You cannot access this page" unless logged_in? && current_user.id == params[:id]
   end
 
   def find_by_id(class_name)
@@ -21,3 +21,5 @@ class ApplicationController < ActionController::Base
   end
 
 end
+
+#gem pundit - for authorization

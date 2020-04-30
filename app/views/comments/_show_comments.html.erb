@@ -1,0 +1,10 @@
+  
+<% comments.each do |comment| %>
+  <div><h4><%= link_to comment.user_name, user_path(comment.user)%> : Rates it a <%= comment.rating %></h4> 
+    <p><%= comment.description %>
+  <b><%= link_to "Edit your comment", edit_recipe_comment_path(comment.recipe, comment) if logged_in? && comment.user.id == current_user.id%></b>
+  <b><%= link_to "Delete your comment", comment, :method =>:delete if logged_in?  && comment.user.id == current_user.id%> </b>
+  </div>
+
+</p> 
+<% end %>

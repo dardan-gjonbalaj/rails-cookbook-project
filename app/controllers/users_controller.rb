@@ -24,7 +24,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    binding.pry
     @user = find_by_id(User)
   end
 
