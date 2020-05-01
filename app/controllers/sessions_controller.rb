@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
   #protect_from_forgery with: :null_session
 
   def create
-    #binding.pry
     if auth_hash
       @user = User.find_or_initialize_by(name: request.env["omniauth.auth"]['info']['email'])
       if @user.id.present?

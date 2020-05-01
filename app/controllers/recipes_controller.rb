@@ -3,8 +3,6 @@ class RecipesController < ApplicationController
   
   #before_action :authorized
   def index
-    #binding.pry
-   # @recipes = current_user.recipes.all
    @recipes = Recipe.all
     @recipes = Recipe.search(params[:search]) if params[:search].present?
            
@@ -18,9 +16,6 @@ class RecipesController < ApplicationController
   def create
     
     @recipe = current_user.recipes.build(recipe_params)
-    binding.pry
-    #if Recipe.all.exists?(name: params[:recipe][:name])
-      
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
@@ -30,21 +25,15 @@ class RecipesController < ApplicationController
 
 
   def edit
-    binding.pry
     @recipe = current_user.recipes.find_by_id(params[:id])
-    #@recipe = find_by_id(Recipe)
     @i = 3.times.collect { @recipe.recipe_ingredients.build }
   end
 
   def update
-    #@recipe = find_by_id(Recipe)
     @recipe = current_user.recipes.find_by_id(params[:id])
-    binding.pry
     if @recipe.update(recipe_params)
-      #recipe.add_ingredients_to_recipe(recipe_ingredient_params)
       redirect_to recipe_path(@recipe), notice: "Your recipe has successfully been updated"
     else
-     # redirect_to new_recipe_path
       render :edit
     end
     end

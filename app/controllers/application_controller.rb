@@ -21,5 +21,3 @@ class ApplicationController < ActionController::Base
   end
 
 end
-
-#gem pundit - for authorization

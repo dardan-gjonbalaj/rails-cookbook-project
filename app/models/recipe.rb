@@ -4,7 +4,6 @@ class Recipe < ActiveRecord::Base
   has_many :ingredients, through: :recipe_ingredients
   has_many :comments
   validates :name, presence: true
- #q validates :name, uniqueness: true
   accepts_nested_attributes_for :ingredients
   accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank
 
@@ -22,11 +21,5 @@ class Recipe < ActiveRecord::Base
       Recipe.all
     end
   end
-
-#add or remove ingredients from edit? .destroy or destroy_all
-# def recipe_ingredients_attributes=(recipe_attributes) -> array of hashes find_by_ingredient_id
-# self.recipe_ingredients=
-# ingredient = Ingredient.
-#
 
 end
