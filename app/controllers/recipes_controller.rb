@@ -3,7 +3,6 @@ class RecipesController < ApplicationController
   
   #before_action :authorized
   def index
-    binding.pry
    @recipes = Recipe.all
    @recipes = Recipe.search(params[:search]) if params[:search].present?  
   end
