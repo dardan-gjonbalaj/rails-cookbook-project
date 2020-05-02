@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
-  resources :comments
+ 
   resources :users, except: [:new]
+  get '/recipes/desc', to:'recipes#desc', as:'desc'
   resources :recipes do
     member do
       post :search
+      #get :desc
     end
-    resources :comments #, except: [:destroy]
+    resources :comments
+    #resources :comments #, except: [:destroy]
    # post '/comments' => 'comments#create'
-  end
+    end
   resources :comments, only: [:destroy]
   resources :ingredients
  

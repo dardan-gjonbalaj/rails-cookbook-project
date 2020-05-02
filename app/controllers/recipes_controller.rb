@@ -3,9 +3,9 @@ class RecipesController < ApplicationController
   
   #before_action :authorized
   def index
+    binding.pry
    @recipes = Recipe.all
-    @recipes = Recipe.search(params[:search]) if params[:search].present?
-           
+   @recipes = Recipe.search(params[:search]) if params[:search].present?  
   end
  
   def new
@@ -13,8 +13,7 @@ class RecipesController < ApplicationController
     @ingredients = 6.times.collect { @recipe.recipe_ingredients.build }
   end
 
-  def create
-    
+  def create   
     @recipe = current_user.recipes.build(recipe_params)
     if @recipe.save
       redirect_to recipe_path(@recipe)
@@ -43,7 +42,11 @@ class RecipesController < ApplicationController
   end
 
   def search
-    
+   # binding.pry
+  end
+
+  def desc
+    @recipes = Recipe.all.desc
   end
 
   private

@@ -8,6 +8,7 @@ class Recipe < ActiveRecord::Base
   accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank
 
   scope :similar, -> (ingredient) {Recipe.joins(:ingredients).where("ingredients.name = ?", ingredient)}
+  scope :desc, -> {reorder(name: :desc)}
 
   def self.search(search)
     if search
@@ -21,5 +22,10 @@ class Recipe < ActiveRecord::Base
       Recipe.all
     end
   end
+
+  # def self.desc
+  #   Recipe.all.desc
+  # end
+
 
 end
